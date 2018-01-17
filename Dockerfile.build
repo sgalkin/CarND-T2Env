@@ -9,15 +9,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     g++ \
     gcc \
     gdb \
-    gfortran \
     git \
+    gfortran \
+    lcov \
+    libssl-dev \
+    libtool-bin \
+    libuv1-dev \
     m4 \
     make \
-    libtool-bin \
-    libssl-dev \
-    libuv1-dev \
+    patch \ 
     pkg-config \
-    patch \
     wget \
     zlib1g-dev
 
