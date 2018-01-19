@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     gdb \
     git \
     gfortran \
-    lcov \
     libssl-dev \
     libtool-bin \
     libuv1-dev \
