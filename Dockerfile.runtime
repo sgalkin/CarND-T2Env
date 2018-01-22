@@ -1,0 +1,23 @@
+FROM sgalkin/carnd-t2-build:latest AS build
+
+FROM ubuntu:16.04 AS runtime
+CMD bash
+EXPOSE 4567
+
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    ca-certificates \
+    libgfortran3 \
+    libssl1.0.0 \
+    libuv1 \
+    zlib1g && \
+    apt-get clean
+
+COPY --from=build /usr/lib/libuWS.so /usr/lib/
+COPY --from=build /usr/local/opt/ipopt/lib/* /usr/lib/
+
+RUN mkdir /app
+RUN chown nobody:nogroup /app
+WORKDIR /app
+VOLUME /app
+
+USER nobody

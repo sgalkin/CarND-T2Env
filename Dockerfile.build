@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     patch \ 
     pkg-config \
     wget \
-    zlib1g-dev
+    zlib1g-dev && \
+    apt-get clean
 
 ENV UWS_URL="https://github.com/uWebSockets/uWebSockets.git"
 ENV UWS_TAG="v0.13.0"
@@ -71,50 +72,6 @@ ENV LD_LIBRARY_PATH="/usr/local/opt/ipopt/lib:${LD_LIBRARY_PATH}"
 #    make install && \
 #    cd .. && \
 #    rm -rf cppad
+
 #ENV PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/local/opt/cppad/share/pkgconfig"
-
 #ENV CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/cppad/include"
-
-#RUN mkdir /build
-#RUN mkdir /install
-#RUN chown nobody:nogroup /build /install
-#WORKDIR /build
-#USER nobody
-
-
-#FROM ubuntu:16.04 AS runtime
-#EXPOSE 4567
-#CMD bash
-##VOLUME /app
-
-#RUN apt-get update && apt-get install --no-install-recommends -y \
-#    ca-certificates \
-#    libgfortran3 \
-#    libuv1 \
-#    libssl1.0.0 \
-#    zlib1g
-
-#COPY --from=build /usr/lib/libuWS.so /usr/lib/
-#COPY --from=build /usr/local/opt/ipopt/lib/* /usr/lib
-##WORKDIR /app
-##USER nobody
-
-#ENTRYPOINT ["cmake", "-DCMAKE_INSTALL_PREFIX=/install", "/repo"]
-#CMD ["/bin/bash"]
-
-#FROM configure AS build
-#ENTRYPOINT ["cmake", "--build", "." , "--config", "Release", "--target", "install"]
-
-#FROM build AS test
-#ENTRYPOINT ["ctest"]
-
-#FROM ubuntu:16.04
-#RUN apt-get update && apt-get install --no-install-recommends -y \
-#    ca-certificates \
-#    libuv1 \
-#    libssl \
-#    zlib1g
-
-#WORKDIR /root
-#COPY --from test /usr/lib64/libuWS.so .
-#COPY --from test
