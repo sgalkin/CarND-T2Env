@@ -1,4 +1,4 @@
-FROM sgalkin/carnd-t2-build:latest AS build
+FROM sgalkin/carnd-t2-dev:latest AS build
 
 FROM ubuntu:16.04 AS runtime
 CMD bash
