@@ -12,12 +12,13 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zlib1g && \
     apt-get clean
 
+# Copy dependenices from the build image
 COPY --from=build /usr/lib/libuWS.so /usr/lib/
 COPY --from=build /usr/local/opt/ipopt/lib/* /usr/lib/
 
+# Preparing application directory
 RUN mkdir /app
 RUN chown nobody:nogroup /app
-WORKDIR /app
-VOLUME /app
-
 USER nobody
+
+WORKDIR /app
