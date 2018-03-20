@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     gdb \
     git \
     gfortran \
-    libgtest-dev \
     libssl-dev \
     libtool-bin \
     libuv1-dev \
@@ -85,7 +84,7 @@ ENV LD_LIBRARY_PATH="/usr/local/opt/ipopt/lib:${LD_LIBRARY_PATH}"
 ENV BENCHMARK_URL="https://github.com/google/benchmark.git"
 RUN git clone ${BENCHMARK_URL} && \
     cd benchmark && \
-    cmake . -DCMAKE_BUILD_TYPE=Release && \
+    cmake . -DCMAKE_BUILD_TYPE=Release -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON && \
     make -j && \
     make test && \
     make install && \
