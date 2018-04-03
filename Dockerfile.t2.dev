@@ -86,7 +86,6 @@ RUN git clone ${BENCHMARK_URL} && \
     cd benchmark && \
     cmake . -DCMAKE_BUILD_TYPE=Release -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON && \
     make -j && \
-    make test && \
     make install && \
     cd .. && \
     rm -rf benchmark
